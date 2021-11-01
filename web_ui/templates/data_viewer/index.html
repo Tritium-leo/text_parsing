@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="../../static/assets/images/favicon.png">
+    <title>依图二车间</title>
+    <!-- Custom CSS -->
+    <link href="../../static/assets/libs/flot/css/float-chart.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="../../static/dist/css/style.min.css" rel="stylesheet">
+    <link href="../../static/dist/jquery.jsonview.css">
+    <link rel="stylesheet" type="text/css" href="/static/assets/libs/select2/dist/css/select2.min.css">
+    <style type="text/css">
+        .parent {
+            width: 400px;
+            height: 400px;
+            border: 1px solid red;
+        }
+
+        .children1 {
+            border: 2px solid #99CCCC;
+            display: inline-block;
+            *display: inline;
+            *zoom: 1;
+            padding-top: 2px;
+            padding-left: 2px;
+            margin-right: 4px;
+            margin-bottom: 6px;
+        }
+
+        .children2 {
+            border: 2px solid #FF9966;
+            display: inline-block;
+            *display: inline;
+            *zoom: 1;
+            margin-right: 4px;
+            margin-bottom: 4px;
+        }
+    </style>
+</head>
+
+<body>
+<!-- ============================================================== -->
+<!-- Preloader - style you can find in spinners.css -->
+<!-- ============================================================== -->
+<div class="preloader">
+    <div class="lds-ripple">
+        <div class="lds-pos"></div>
+        <div class="lds-pos"></div>
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- Main wrapper - style you can find in pages.scss -->
+<!-- ============================================================== -->
+<div id="main-wrapper">
+    <header class="topbar" data-navbarbg="skin5">
+        <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+            <div class="navbar-header" data-logobg="skin5">
+                <!-- This is for the sidebar toggle which is visible on mobile only -->
+                <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i
+                        class="ti-menu ti-close"></i></a>
+                <!-- ============================================================== -->
+                <!-- Logo -->
+                <!-- ============================================================== -->
+                <a class="navbar-brand" href="index.html">
+                    <!-- Logo icon -->
+                    <b class="logo-icon p-l-10">
+                        <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                        <!-- Dark Logo icon -->
+                        <img src="../../static/assets/images/logo-icon.png" alt="homepage" class="light-logo"/>
+
+                    </b>
+                    <!--End Logo icon -->
+                    <!-- Logo text -->
+                    <span class="logo-text">
+                             <!-- dark Logo text -->
+                             <img src="../../static/assets/images/logo-text.png" alt="homepage" class="light-logo"
+                                  width="152px" height="28px"/>
+                            
+                        </span>
+                </a>
+                <a class="topbartoggler d-block d-md-none waves-effect waves-light" href="javascript:void(0)"
+                   data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                   aria-expanded="false" aria-label="Toggle navigation"><i class="ti-more"></i></a>
+            </div>
+            <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
+                <ul class="navbar-nav float-left mr-auto">
+                    <li class="nav-item d-none d-md-block"><a class="nav-link sidebartoggler waves-effect waves-light"
+                                                              href="javascript:void(0)" data-sidebartype="mini-sidebar"><i
+                            class="mdi mdi-menu font-24"></i></a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="d-none d-md-block">Create New <i class="fa fa-angle-down"></i></span>
+                            <span class="d-block d-md-none"><i class="fa fa-plus"></i></span>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </li>
+                    <li class="nav-item search-box"><a class="nav-link waves-effect waves-dark"
+                                                       href="javascript:void(0)"><i class="ti-search"></i></a>
+                        <form class="app-search position-absolute">
+                            <input type="text" class="form-control" placeholder="Search &amp; enter"> <a
+                                class="srh-btn"><i class="ti-close"></i></a>
+                        </form>
+                    </li>
+                </ul>
+                <!-- ============================================================== -->
+                <!-- Right side toggle and nav items -->
+                <!-- ============================================================== -->
+                <ul class="navbar-nav float-right">
+                    <!-- ============================================================== -->
+                    <!-- Comment -->
+                    <!-- ============================================================== -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false"> <i class="mdi mdi-bell font-24"></i>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </li>
+                    <!-- ============================================================== -->
+                    <!-- End Comment -->
+                    <!-- ============================================================== -->
+                    <!-- ============================================================== -->
+                    <!-- Messages -->
+                    <!-- ============================================================== -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" id="2"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i
+                                class="font-24 mdi mdi-comment-processing"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right mailbox animated bounceInDown"
+                             aria-labelledby="2">
+                            <ul class="list-style-none">
+                                <li>
+                                    <div class="">
+                                        <!-- Message -->
+                                        <a href="javascript:void(0)" class="link border-top">
+                                            <div class="d-flex no-block align-items-center p-10">
+                                                <span class="btn btn-success btn-circle"><i
+                                                        class="ti-calendar"></i></span>
+                                                <div class="m-l-10">
+                                                    <h5 class="m-b-0">Event today</h5>
+                                                    <span class="mail-desc">Just a reminder that event</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <!-- Message -->
+                                        <a href="javascript:void(0)" class="link border-top">
+                                            <div class="d-flex no-block align-items-center p-10">
+                                                <span class="btn btn-info btn-circle"><i class="ti-settings"></i></span>
+                                                <div class="m-l-10">
+                                                    <h5 class="m-b-0">Settings</h5>
+                                                    <span class="mail-desc">You can customize this template</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <!-- Message -->
+                                        <a href="javascript:void(0)" class="link border-top">
+                                            <div class="d-flex no-block align-items-center p-10">
+                                                <span class="btn btn-primary btn-circle"><i class="ti-user"></i></span>
+                                                <div class="m-l-10">
+                                                    <h5 class="m-b-0">Pavan kumar</h5>
+                                                    <span class="mail-desc">Just see the my admin!</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <!-- Message -->
+                                        <a href="javascript:void(0)" class="link border-top">
+                                            <div class="d-flex no-block align-items-center p-10">
+                                                <span class="btn btn-danger btn-circle"><i
+                                                        class="fa fa-link"></i></span>
+                                                <div class="m-l-10">
+                                                    <h5 class="m-b-0">Luanch Admin</h5>
+                                                    <span class="mail-desc">Just see the my new admin!</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <!-- ============================================================== -->
+                    <!-- End Messages -->
+                    <!-- ============================================================== -->
+
+                    <!-- ============================================================== -->
+                    <!-- User profile and search -->
+                    <!-- ============================================================== -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href=""
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img
+                                src="../../static/assets/images/users/1.jpg" alt="user" class="rounded-circle"
+                                width="31"></a>
+                        <div class="dropdown-menu dropdown-menu-right user-dd animated">
+                            <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user m-r-5 m-l-5"></i> My
+                                Profile</a>
+                            <a class="dropdown-item" href="javascript:void(0)"><i class="ti-wallet m-r-5 m-l-5"></i> My
+                                Balance</a>
+                            <a class="dropdown-item" href="javascript:void(0)"><i class="ti-email m-r-5 m-l-5"></i>
+                                Inbox</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="javascript:void(0)"><i class="ti-settings m-r-5 m-l-5"></i>
+                                Account Setting</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="javascript:void(0)"><i
+                                    class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
+                            <div class="dropdown-divider"></div>
+                            <div class="p-l-30 p-10"><a href="javascript:void(0)"
+                                                        class="btn btn-sm btn-success btn-rounded">View Profile</a>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- ============================================================== -->
+                    <!-- User profile and search -->
+                    <!-- ============================================================== -->
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <aside class="left-sidebar" data-sidebarbg="skin5">
+        <div class="scroll-sidebar">
+            <nav class="sidebar-nav">
+                <ul id="sidebarnav" class="p-t-30">
+                    <li class="sidebar-item"><a class="sidebar-link has-arrow waves-effect waves-dark"
+                                                href="javascript:void(0)" aria-expanded="false"><i
+                            class="mdi mdi-hospital"></i><span class="hide-menu">数据查看器 </span></a>
+                        <ul aria-expanded="false" class="collapse  first-level">
+                            <li class="sidebar-item"><a href="data_viewer" class="sidebar-link"><i
+                                    class="mdi mdi-hospital-building"></i><span class="hide-menu"> 数据查看器 </span></a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </aside>
+    <div class="page-wrapper">
+        <div class="page-breadcrumb">
+            <div class="row">
+                <div class="col-12 d-flex no-block align-items-center">
+                    <h4 class="page-title">数据查看器</h4>
+                    <div class="ml-auto text-right">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Library</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-6">
+                                    <h5 class="card-title">数据选择</h5>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 text-right control-label col-form-label">数据库链接选择:</label>
+                                        <div class="col-sm-8">
+                                            <select id="database_url_choose" class="select2"
+                                                    onchange="load_databases()">
+                                                <option value='' selected disabled>请选择数据库链接</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 text-right control-label col-form-label">数据库选择:</label>
+                                        <div class="col-sm-8">
+                                            <select id="database_choose" class="select2">
+                                                <option value='' selected disabled>请选择数据库</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 text-right control-label col-form-label">文本段落来源:</label>
+                                        <div class="col-sm-8">
+                                            <select id="paragraph_source" class="select2">
+                                                <option value='' selected disabled>请选择来源</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 text-right control-label col-form-label">抽象时间来源:</label>
+                                        <div class="col-sm-8">
+                                            <select id="abstract_source" class="select2">
+                                                <option value='' selected disabled>请选择抽象时间来源</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 text-right control-label col-form-label">dimension_ID:</label>
+                                        <div class="col-sm-8">
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control" id="dimension_id"
+                                                       placeholder="请输入主维度ID">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <h5 class="card-title">解析条件</h5>
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <label>手动配置还是来自JSON:</label>
+                                        </div>
+                                        <div class="col-9">
+                                            <div class="form-group row">
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" class="custom-control-input"
+                                                           id="customControlValidation22"
+                                                           name="choose_param_type" checked
+                                                           value='hand'
+                                                           onclick="$('#by_hand').show();$('#by_json').hide()">
+                                                    <label class="custom-control-label"
+                                                           for="customControlValidation22">手动</label>
+                                                </div>
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" class="custom-control-input"
+                                                           id="customControlValidation23"
+                                                           name="choose_param_type"
+                                                           value='json'
+                                                           onclick="$('#by_hand').hide();$('#by_json').show()">
+                                                    <label class="custom-control-label"
+                                                           for="customControlValidation23">JSON</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id='by_hand'>
+                                        <div class="row">
+                                            <div class="col-2">
+                                                <label>段落标准化:</label>
+                                            </div>
+                                            <div class="col-10">
+                                                <div class="form-group row">
+                                                    <label class="col-md-5">是否切分引号括号里面的分隔符:</label>
+                                                    <div class="col-md-7">
+                                                        <div class="custom-control custom-radio">
+                                                            <input type="radio" class="custom-control-input"
+                                                                   id="customControlValidation7"
+                                                                   name="ignore_inner_punctuation"
+                                                                   value="true" checked required>
+                                                            <label class="custom-control-label"
+                                                                   for="customControlValidation7">是</label>
+                                                        </div>
+                                                        <div class="custom-control custom-radio">
+                                                            <input type="radio" class="custom-control-input"
+                                                                   id="customControlValidation8"
+                                                                   name="ignore_inner_punctuation"
+                                                                   value="false" required>
+                                                            <label class="custom-control-label"
+                                                                   for="customControlValidation8">否</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-md-5">是否获得更好的时间提取文本:</label>
+                                                    <div class="col-md-7">
+                                                        <div class="custom-control custom-radio">
+                                                            <input type="radio" class="custom-control-input"
+                                                                   id="customControlValidation15"
+                                                                   name="get_more_time_get_paragraph"
+                                                                   value="true" required>
+                                                            <label class="custom-control-label"
+                                                                   for="customControlValidation15">是</label>
+                                                        </div>
+                                                        <div class="custom-control custom-radio">
+                                                            <input type="radio" class="custom-control-input"
+                                                                   id="customControlValidation16"
+                                                                   name="get_more_time_get_paragraph"
+                                                                   value="false" checked required>
+                                                            <label class="custom-control-label"
+                                                                   for="customControlValidation16">否</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-md-5">是否将 。"。)替换为"。)。:</label>
+                                                    <div class="col-md-7">
+                                                        <div class="custom-control custom-radio">
+                                                            <input type="radio" class="custom-control-input"
+                                                                   id="customControlValidation20"
+                                                                   name="replace_last_inner_punctuation_to_out"
+                                                                   value="true" required>
+                                                            <label class="custom-control-label"
+                                                                   for="customControlValidation20">是</label>
+                                                        </div>
+                                                        <div class="custom-control custom-radio">
+                                                            <input type="radio" class="custom-control-input"
+                                                                   id="customControlValidation21"
+                                                                   name="replace_last_inner_punctuation_to_out"
+                                                                   value="false" checked required>
+                                                            <label class="custom-control-label"
+                                                                   for="customControlValidation21">否</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-2">
+                                                <label>段落切分:</label>
+                                            </div>
+                                            <div class="col-10">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 control-label col-form-label">整句分割正则:</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control"
+                                                               id="whole_sentence_split_reg"
+                                                               placeholder="请输入整句分割正则">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 control-label col-form-label">短句分割正则:</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control"
+                                                               id="short_sentence_split_reg"
+                                                               placeholder="请输入短句分割正则">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 control-label col-form-label">是否提取时间:</label>
+                                                    <div class="col-sm-9">
+                                                        <div class="custom-control custom-radio">
+                                                            <input type="radio" class="custom-control-input"
+                                                                   id="customControlValidation17"
+                                                                   name="get_sentence_time"
+                                                                   value="true"
+                                                                   onclick="$('#time_function').show()">
+                                                            <label class="custom-control-label"
+                                                                   for="customControlValidation17">是</label>
+                                                        </div>
+                                                        <div class="custom-control custom-radio">
+                                                            <input type="radio" class="custom-control-input"
+                                                                   id="customControlValidation18"
+                                                                   name="get_sentence_time"
+                                                                   value="false" checked
+                                                                   onclick="$('#time_function').hide()">
+                                                            <label class="custom-control-label"
+                                                                   for="customControlValidation18">否</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="row" id="time_function" style="display:none">
+                                            <div class="col-2">
+                                                <label>段落时间提取:</label>
+                                            </div>
+                                            <div class="col-10">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-5 control-label col-form-label">是否为短句切分时间顿号时间:</label>
+                                                    <div class="col-sm-7">
+                                                        <div class="custom-control custom-radio">
+                                                            <input type="radio" class="custom-control-input"
+                                                                   id="customControlValidation13"
+                                                                   name="spilt_short_by_time_and_comma"
+                                                                   value="true" required>
+                                                            <label class="custom-control-label"
+                                                                   for="customControlValidation13">是</label>
+                                                        </div>
+                                                        <div class="custom-control custom-radio">
+                                                            <input type="radio" class="custom-control-input"
+                                                                   id="customControlValidation14"
+                                                                   name="spilt_short_by_time_and_comma"
+                                                                   value="false" checked required>
+                                                            <label class="custom-control-label"
+                                                                   for="customControlValidation14">否</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-md-5">整句是否取最后一个时间:</label>
+                                                    <div class="col-md-7">
+                                                        <div class="custom-control custom-radio">
+                                                            <input type="radio" class="custom-control-input"
+                                                                   id="customControlValidation1"
+                                                                   name="whole_get_last_time"
+                                                                   value="true" required>
+
+                                                            <label class="custom-control-label"
+                                                                   for="customControlValidation1">是</label>
+                                                        </div>
+                                                        <div class="custom-control custom-radio">
+                                                            <input type="radio" class="custom-control-input"
+                                                                   id="customControlValidation2"
+                                                                   name="whole_get_last_time"
+                                                                   value="false" checked required>
+                                                            <label class="custom-control-label"
+                                                                   for="customControlValidation2">否</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-md-5">短句是否取最后一个时间:</label>
+                                                    <div class="col-md-7">
+                                                        <div class="custom-control custom-radio">
+                                                            <input type="radio" class="custom-control-input"
+                                                                   id="customControlValidation3"
+                                                                   name="short_get_last_time"
+                                                                   value="true" required>
+                                                            <label class="custom-control-label"
+                                                                   for="customControlValidation3">是</label>
+                                                        </div>
+                                                        <div class="custom-control custom-radio">
+                                                            <input type="radio" class="custom-control-input"
+                                                                   id="customControlValidation4"
+                                                                   name="short_get_last_time"
+                                                                   value="false" checked required>
+                                                            <label class="custom-control-label"
+                                                                   for="customControlValidation4">否</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-4  control-label col-form-label">不提取时间的短句正则:</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control"
+                                                               id="short_time_filter_pattern"
+                                                               placeholder="请输入不提取时间的短句正则">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-5 control-label col-form-label">是否忽略[括号][引号]里的时间:</label>
+                                                    <div class="col-sm-7">
+                                                        <div class="custom-control custom-radio">
+                                                            <input type="radio" class="custom-control-input"
+                                                                   id="customControlValidation9"
+                                                                   name="get_time_ignore_bracket_and_other"
+                                                                   value="true" required>
+                                                            <label class="custom-control-label"
+                                                                   for="customControlValidation9">是</label>
+                                                        </div>
+                                                        <div class="custom-control custom-radio">
+                                                            <input type="radio" class="custom-control-input"
+                                                                   id="customControlValidation10"
+                                                                   name="get_time_ignore_bracket_and_other"
+                                                                   value="false" checked required>
+                                                            <label class="custom-control-label"
+                                                                   for="customControlValidation10">否</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-3">
+                                                        <label>短句时间继承规则:</label>
+                                                    </div>
+                                                    <div class="col-9">
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-5 control-label col-form-label">能够继承的整句范围:</label>
+                                                            <div class="col-sm-7">
+                                                                <input type="text" class="form-control"
+                                                                       id="prefix_whole_num"
+                                                                       placeholder="请输入取时间的短句正则">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-5 control-label col-form-label">能够继承的短句范围:</label>
+                                                            <div class="col-sm-7">
+                                                                <input type="text" class="form-control"
+                                                                       id="prefix_short_num"
+                                                                       placeholder="请输入能够继承的短句范围">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-5 control-label col-form-label">是否仅提取有的时间:</label>
+                                                            <div class="col-sm-7">
+                                                                <div class="custom-control custom-radio">
+                                                                    <input type="radio" class="custom-control-input"
+                                                                           id="customControlValidation5"
+                                                                           name="get_useful"
+                                                                           value="true" checked required>
+                                                                    <label class="custom-control-label"
+                                                                           for="customControlValidation5">是</label>
+                                                                </div>
+                                                                <div class="custom-control custom-radio">
+                                                                    <input type="radio" class="custom-control-input"
+                                                                           id="customControlValidation6"
+                                                                           name="get_useful"
+                                                                           value="false" required>
+                                                                    <label class="custom-control-label"
+                                                                           for="customControlValidation6">否</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="by_json">
+                                        <textarea id="json_text_area" width="100%"
+                                                  style="width: 100%;height: 200px"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="border-top">
+                                <div class="card-body">
+                                    <button type="button" class="btn btn-success" onclick="find_result(this)">解析
+                                    </button>
+                                    <button type="button" class="btn btn-skype" onclick="process_param()">生成配置参数
+                                    </button>
+                                    <button type="button" class="btn btn-secondary"
+                                            onclick="$(this).parent().parent().prev().toggle()">收起/展开
+                                    </button>
+                                    {#                                    <button type="button" class="btn btn-info" onclick="edit_query()">编辑</button>#}
+                                    {#                                    <button type="button" class="btn btn-danger" onclick="delete_query()">删除</button>#}
+                                    {#                                    <button type="button" class="btn btn-secondary" onclick="restore_query()">恢复#}
+                                    {#                                    </button>#}
+                                    {#                                    <button type="button" class="btn btn-info" id="download_button"#}
+                                    {#                                            onclick="download_config_json()">导出配置#}
+                                    {#                                    </button>#}
+                                    {#                                    <button type="button" class="btn btn-info" onclick="upload_config()">上传配置文件#}
+                                    {#                                    </button>#}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Dimension_Id:</h5>
+                            <div id='case_id'></div>
+                            <h5 class="card-title">原始文本:</h5>
+                            <div id='origin_text'></div>
+                            <h5 class="card-title">抽象时间:</h5>
+                            <div id='abstract_time'></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">结构化结果</h5>
+                            <div id='json_renderer'></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">配置参数:</h5>
+                            <div id='param'></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="footer text-center">依图</footer>
+    </div>
+</div>
+<script src="../../static/assets/libs/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap tether Core JavaScript -->
+<script src="../../static/assets/libs/popper.js/dist/umd/popper.min.js"></script>
+<script src="../../static/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="../../static/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+<script src="../../static/assets/extra-libs/sparkline/sparkline.js"></script>
+<!--Wave Effects -->
+<script src="../../static/dist/js/waves.js"></script>
+<!--Menu sidebar -->
+<script src="../../static/dist/js/sidebarmenu.js"></script>
+<!--Custom JavaScript -->
+<script src="../../static/dist/js/custom.min.js"></script>
+<!--This page JavaScript -->
+<!-- <script src="../../static/dist/js/pages/dashboards/dashboard1.js"></script> -->
+<!-- Charts js Files -->
+<script src="/static/assets/libs/flot/excanvas.js"></script>
+<script src="/static/assets/libs/flot/jquery.flot.js"></script>
+<script src="/static/assets/libs/flot/jquery.flot.pie.js"></script>
+<script src="/static/assets/libs/flot/jquery.flot.time.js"></script>
+<script src="/static/assets/libs/flot/jquery.flot.stack.js"></script>
+<script src="/static/dist/jquery.jsonview.js"></script>
+<script src="/static/assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
+<script src="/static/assets/libs/select2/dist/js/select2.full.min.js"></script>
+<script src="/static/assets/libs/select2/dist/js/select2.min.js"></script>
+
+<script src="/static/layui/layui.js" charset="utf-8"></script>
+<script src="/static/js/base/base.js" charset="utf-8"></script>
+<script src="/static/js/tools_box/data_viewer.js"></script>
+</body>
+
+</html>

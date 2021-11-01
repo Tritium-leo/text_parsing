@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+    {% block head %}
+    <title>文本解析工具UI</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/assets/images/big/auth-bg.jpg">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="/static/assets/libs/select2/dist/css/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/assets/libs/jquery-minicolors/jquery.minicolors.css">
+    <link href="/static/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css"
+          href="/static/assets/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/assets/libs/quill/dist/quill.snow.css">
+
+    <link href="/static/dist/css/style.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="/static/assets/extra-libs/multicheck/multicheck.css">
+
+    <link rel="stylesheet" href="/static/layui/css/layui.css" media="all">
+     <link rel="stylesheet" href="/static/dist/jquery.jsonview.css" />
+    {% endblock %}
+
+</head>
+<body>
+<div class="preloader">
+    <div class="lds-ripple">
+        <div class="lds-pos"></div>
+        <div class="lds-pos"></div>
+    </div>
+</div>
+<div id="main-wrapper">
+    {% include "base_head_page.html" %}
+    <aside class="left-sidebar" data-sidebarbg="skin5">
+        <div class="scroll-sidebar">
+            <nav class="sidebar-nav">
+                <ul id="sidebarnav" class="p-t-30">
+                   <li class="sidebar-item"><a href="data_viewer" class="sidebar-link"><i
+                                    class="mdi mdi-hospital-building"></i><span
+                                    class="hide-menu"> 文本解析时间提取框架 </span></a>
+                            </li>
+                </ul>
+            </nav>
+        </div>
+    </aside>
+    <div class="page-wrapper">
+        {% block content %}{% endblock %}
+
+    </div>
+
+    <footer class="footer text-center">自研,Author@池瑞建</footer>
+</div>
+</div>
+<script src="/static/assets/libs/jquery/dist/jquery.min.js"></script>
+<script src="/static/assets/libs/popper.js/dist/umd/popper.min.js"></script>
+<script src="/static/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/static/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+<script src="/static/assets/extra-libs/sparkline/sparkline.js"></script>
+<script src="/static/dist/js/waves.js"></script>
+<script src="/static/dist/js/sidebarmenu.js"></script>
+<script src="/static/dist/js/custom.min.js"></script>
+<script src="/static/assets/libs/inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
+<script src="/static/dist/js/pages/mask/mask.init.js"></script>
+
+<script src="/static/assets/libs/select2/dist/js/select2.full.min.js"></script>
+<script src="/static/assets/libs/select2/dist/js/select2.min.js"></script>
+
+<script src="/static/assets/libs/jquery-minicolors/jquery.minicolors.min.js"></script>
+<script src="/static/assets/libs/quill/dist/quill.min.js"></script>
+
+<script src="/static/assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
+<script src="/static/assets/extra-libs/multicheck/jquery.multicheck.js"></script>
+<script src="/static/assets/extra-libs/DataTables/datatables.min.js"></script>
+
+<script src="/static/layui/layui.js" charset="utf-8"></script>
+<script src="/static/js/base/base.js" charset="utf-8"></script>
+<script src="/static/js/base_head_page.js"></script>
+{% block script %}
+{% endblock %}
+</body>
+
+</html>
